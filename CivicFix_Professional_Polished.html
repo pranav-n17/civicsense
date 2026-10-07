@@ -1,0 +1,3372 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CivicFix | Report. Track. Improve.</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',Arial,sans-serif;
+    background:#f5f8f7;
+    color:#12231d;
+    overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    background:rgba(255,255,255,.82);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(0,0,0,.06);
+    z-index:1000;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:800;
+    letter-spacing:-1px;
+}
+
+.logo-main{
+    color:#087f5b;
+}
+
+.logo-dot{
+    color:#f59f00;
+}
+
+.nav-links{
+    display:flex;
+    gap:32px;
+    list-style:none;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#4b625a;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.nav-links a:hover{
+    color:#087f5b;
+}
+
+.nav-btn{
+    border:0;
+    padding:11px 18px;
+    border-radius:10px;
+    background:#087f5b;
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.nav-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(8,127,91,.25);
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:720px;
+    padding:150px 7% 90px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 80% 25%,rgba(27,173,123,.17),transparent 30%),
+        radial-gradient(circle at 10% 70%,rgba(245,159,0,.10),transparent 25%),
+        #f6faf8;
+}
+
+.hero-content{
+    max-width:650px;
+    position:relative;
+    z-index:2;
+    animation:fadeUp .8s ease forwards;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 13px;
+    border-radius:30px;
+    background:#e4f7ef;
+    color:#087f5b;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:22px;
+    animation:pulse 3s infinite;
+}
+
+.hero h1{
+    font-size:65px;
+    line-height:1.02;
+    letter-spacing:-3px;
+    margin-bottom:23px;
+}
+
+.gradient-text{
+    background:linear-gradient(90deg,#087f5b,#15a979);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero-description{
+    color:#5f716a;
+    font-size:17px;
+    line-height:1.75;
+    max-width:580px;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:12px;
+}
+
+.primary{
+    border:0;
+    padding:14px 22px;
+    background:#087f5b;
+    color:white;
+    border-radius:10px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 30px rgba(8,127,91,.25);
+}
+
+.secondary{
+    border:1px solid #d8e4df;
+    padding:14px 22px;
+    background:white;
+    color:#17352b;
+    border-radius:10px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+/* FLOATING ORBS */
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(1px);
+    opacity:.45;
+    animation:float 7s ease-in-out infinite;
+}
+
+.orb1{
+    width:180px;
+    height:180px;
+    background:#b8ead8;
+    right:8%;
+    top:12%;
+}
+
+.orb2{
+    width:100px;
+    height:100px;
+    background:#ffe2a9;
+    right:36%;
+    bottom:8%;
+    animation-delay:1.5s;
+}
+
+/* HERO DASHBOARD */
+
+.hero-dashboard{
+    width:420px;
+    position:relative;
+    z-index:2;
+    animation:floatCard 5s ease-in-out infinite;
+}
+
+.dashboard-window{
+    background:rgba(255,255,255,.82);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:0 30px 70px rgba(20,60,45,.16);
+    border-radius:22px;
+    padding:22px;
+}
+
+.window-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.window-dots{
+    display:flex;
+    gap:5px;
+}
+
+.window-dots span{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#c8d6d1;
+}
+
+.live{
+    font-size:11px;
+    color:#087f5b;
+    font-weight:700;
+}
+
+.map{
+    height:190px;
+    border-radius:15px;
+    position:relative;
+    overflow:hidden;
+    background:
+        linear-gradient(25deg,transparent 46%,rgba(8,127,91,.1) 47%,transparent 49%),
+        linear-gradient(150deg,transparent 46%,rgba(8,127,91,.09) 47%,transparent 49%),
+        #edf6f2;
+}
+
+.map-line{
+    position:absolute;
+    height:3px;
+    background:#b5dacf;
+    transform:rotate(-20deg);
+    width:150%;
+    left:-20%;
+}
+
+.map-line:nth-child(2){
+    top:55%;
+    transform:rotate(18deg);
+}
+
+.map-line:nth-child(3){
+    top:75%;
+    transform:rotate(-8deg);
+}
+
+.pin{
+    position:absolute;
+    width:16px;
+    height:16px;
+    border-radius:50%;
+    background:#087f5b;
+    border:4px solid white;
+    box-shadow:0 0 0 6px rgba(8,127,91,.15);
+    animation:pinPulse 2s infinite;
+}
+
+.pin1{left:28%;top:30%}
+.pin2{left:60%;top:52%;animation-delay:.6s}
+.pin3{left:73%;top:25%;animation-delay:1s}
+.pin4{left:44%;top:72%;animation-delay:1.4s}
+
+.mini-cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:14px;
+}
+
+.mini-card{
+    background:#f6faf8;
+    border-radius:11px;
+    padding:12px;
+}
+
+.mini-card strong{
+    font-size:20px;
+    display:block;
+}
+
+.mini-card span{
+    color:#70827a;
+    font-size:10px;
+}
+
+/* ================= GENERAL ================= */
+
+.container{
+    width:86%;
+    max-width:1200px;
+    margin:auto;
+}
+
+section{
+    padding:90px 0;
+}
+
+.section-label{
+    color:#087f5b;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    margin-bottom:8px;
+}
+
+.section-title{
+    font-size:35px;
+    letter-spacing:-1px;
+    margin-bottom:8px;
+}
+
+.section-subtitle{
+    color:#71817b;
+    margin-bottom:35px;
+}
+
+/* ================= STATS ================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:17px;
+}
+
+.stat-card{
+    background:white;
+    border:1px solid #e3ebe7;
+    border-radius:17px;
+    padding:25px;
+    transition:.3s;
+    animation:fadeUp .8s ease forwards;
+}
+
+.stat-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(25,65,50,.08);
+}
+
+.stat-icon{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:#e9f7f1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:18px;
+}
+
+.stat-card h2{
+    color:#087f5b;
+    font-size:31px;
+}
+
+.stat-card p{
+    color:#75857f;
+    font-size:12px;
+    margin-top:4px;
+}
+
+/* ================= ISSUE SECTION ================= */
+
+.issue-toolbar{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+.search{
+    flex:1;
+    min-width:220px;
+}
+
+input,select,textarea{
+    padding:13px 14px;
+    border:1px solid #dce6e2;
+    background:white;
+    border-radius:10px;
+    font-family:inherit;
+    outline:none;
+    transition:.2s;
+}
+
+input:focus,select:focus,textarea:focus{
+    border-color:#087f5b;
+    box-shadow:0 0 0 3px rgba(8,127,91,.08);
+}
+
+.issue-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.issue-card{
+    background:white;
+    border:1px solid #e3ebe7;
+    padding:21px;
+    border-radius:17px;
+    cursor:pointer;
+    transition:.3s;
+    animation:cardIn .5s ease both;
+}
+
+.issue-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 20px 40px rgba(24,64,49,.09);
+    border-color:#c8ded6;
+}
+
+.issue-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:17px;
+}
+
+.issue-icon{
+    font-size:27px;
+}
+
+.status{
+    font-size:10px;
+    font-weight:800;
+    padding:6px 9px;
+    border-radius:20px;
+}
+
+.reported{
+    background:#fff2cc;
+    color:#966600;
+}
+
+.progress{
+    background:#e0edff;
+    color:#2563a9;
+}
+
+.resolved{
+    background:#dcf7ea;
+    color:#087f5b;
+}
+
+.issue-card h3{
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+.issue-card p{
+    color:#71817b;
+    font-size:12px;
+    line-height:1.6;
+}
+
+.issue-meta{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-top:17px;
+}
+
+.meta{
+    font-size:10px;
+    background:#f2f6f4;
+    padding:6px 8px;
+    border-radius:7px;
+    color:#60736b;
+}
+
+/* ================= IMPACT ================= */
+
+.impact{
+    background:#10271f;
+    color:white;
+    position:relative;
+    overflow:hidden;
+}
+
+.impact .section-subtitle{
+    color:#9eb3aa;
+}
+
+.impact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.impact-box{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:18px;
+    padding:27px;
+    backdrop-filter:blur(10px);
+}
+
+.impact-box h3{
+    margin-bottom:25px;
+}
+
+.bar{
+    margin-bottom:21px;
+}
+
+.bar-label{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    margin-bottom:8px;
+}
+
+.bar-bg{
+    height:8px;
+    background:rgba(255,255,255,.1);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.bar-fill{
+    height:100%;
+    background:#25bd8a;
+    border-radius:10px;
+    animation:grow 1.5s ease forwards;
+    transform-origin:left;
+}
+
+.flow{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.flow-step{
+    padding:18px 10px;
+    text-align:center;
+    background:rgba(255,255,255,.06);
+    border-radius:12px;
+}
+
+.flow-icon{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.flow-step strong{
+    display:block;
+    font-size:11px;
+}
+
+.flow-step span{
+    font-size:9px;
+    color:#9eb3aa;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(7,25,19,.65);
+    backdrop-filter:blur(8px);
+    z-index:2000;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-box{
+    width:100%;
+    max-width:550px;
+    max-height:90vh;
+    overflow-y:auto;
+    background:white;
+    border-radius:20px;
+    padding:28px;
+    animation:modalIn .3s ease;
+    box-shadow:0 30px 80px rgba(0,0,0,.25);
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.close{
+    font-size:25px;
+    cursor:pointer;
+    color:#71817b;
+}
+
+.form-group{
+    margin-bottom:17px;
+}
+
+.form-group label{
+    display:block;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:7px;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.submit-btn{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:10px;
+    background:#087f5b;
+    color:white;
+    font-weight:800;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.submit-btn:hover{
+    background:#066b4d;
+}
+
+
+/* ================= ISSUE EVIDENCE PHOTO ================= */
+.evidence{
+    margin-top:26px;
+}
+.evidence-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+.evidence-head span{
+    font-size:10px;
+    color:#8a9993;
+    font-weight:600;
+}
+.evidence-photo{display:block;width:100%;max-height:340px;object-fit:cover;border-radius:14px;background:#eef4f1;box-shadow:0 8px 24px rgba(16,55,43,.10)}\n.evidence-photo{
+    width:100%;
+    height:210px;
+    object-fit:cover;
+    border-radius:14px;
+    display:block;
+    border:1px solid #e1ebe7;
+    box-shadow:0 8px 24px rgba(20,55,43,.08);
+    animation:photoReveal .45s ease both;
+}
+.evidence-caption{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    margin-top:8px;
+    font-size:10px;
+    color:#82918b;
+}
+.evidence-placeholder{
+    height:150px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#edf7f3,#f7faf9);
+    border:1px dashed #c8ddd5;
+    display:grid;
+    place-items:center;
+    color:#71817b;
+    font-size:11px;
+    text-align:center;
+}
+@keyframes photoReveal{
+    from{opacity:0;transform:translateY(8px) scale(.985)}
+    to{opacity:1;transform:none}
+}
+
+/* ================= TIMELINE ================= */
+
+.timeline{
+    display:flex;
+    justify-content:space-between;
+    position:relative;
+    margin:30px 0;
+}
+
+.timeline:before{
+    content:"";
+    position:absolute;
+    top:14px;
+    left:8%;
+    right:8%;
+    height:3px;
+    background:#dce6e2;
+}
+
+.step{
+    width:25%;
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+
+.dot{
+    width:29px;
+    height:29px;
+    background:#dce6e2;
+    border:5px solid white;
+    border-radius:50%;
+    margin:auto;
+}
+
+.step.active .dot{
+    background:#087f5b;
+    box-shadow:0 0 0 5px rgba(8,127,91,.1);
+}
+
+.step p{
+    font-size:9px;
+    margin-top:8px;
+    color:#71817b;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    padding:40px;
+    text-align:center;
+    background:#081a14;
+    color:white;
+}
+
+footer p{
+    color:#81968e;
+    font-size:12px;
+    margin-top:8px;
+}
+
+/* ================= TOAST ================= */
+
+.toast{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#10271f;
+    color:white;
+    padding:15px 19px;
+    border-radius:12px;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+    transform:translateY(100px);
+    opacity:0;
+    transition:.4s;
+    z-index:3000;
+    font-size:13px;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-20px)}
+}
+
+@keyframes floatCard{
+    0%,100%{transform:translateY(0) rotate(0deg)}
+    50%{transform:translateY(-10px) rotate(.5deg)}
+}
+
+@keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(8,127,91,.1)}
+    50%{box-shadow:0 0 0 7px rgba(8,127,91,.04)}
+}
+
+@keyframes pinPulse{
+    0%,100%{box-shadow:0 0 0 5px rgba(8,127,91,.12)}
+    50%{box-shadow:0 0 0 11px rgba(8,127,91,.03)}
+}
+
+@keyframes grow{
+    from{transform:scaleX(0)}
+    to{transform:scaleX(1)}
+}
+
+@keyframes modalIn{
+    from{
+        opacity:0;
+        transform:scale(.94) translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+}
+
+
+/* ================= PROFESSIONAL PUBLIC-SERVICE UPGRADE ================= */
+
+.utility-bar{
+    height:30px;
+    background:#0a3d2e;
+    color:#dcefe8;
+    display:flex;
+    align-items:center;
+    font-size:10px;
+    letter-spacing:.2px;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1001;
+}
+.utility-inner{
+    width:86%;
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.utility-status{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+.utility-status i,
+.updated-dot i{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#36d39a;
+    display:inline-block;
+    box-shadow:0 0 0 4px rgba(54,211,154,.12);
+    animation:statusBlink 2s infinite;
+}
+
+nav{
+    top:30px;
+    height:68px;
+    transition:height .3s ease,box-shadow .3s ease,background .3s ease;
+}
+nav.scrolled{
+    height:60px;
+    background:rgba(255,255,255,.94);
+    box-shadow:0 8px 28px rgba(20,55,43,.08);
+}
+.brand-wrap{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.brand-mark{
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    display:grid;
+    place-items:center;
+    background:#087f5b;
+    color:white;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:-.5px;
+    box-shadow:0 5px 14px rgba(8,127,91,.18);
+}
+.brand-caption{
+    font-size:8px;
+    color:#8a9993;
+    margin-top:-2px;
+    letter-spacing:.3px;
+}
+.logo{font-size:22px}
+
+.hero{
+    min-height:730px;
+    padding-top:175px;
+}
+.hero:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+      linear-gradient(rgba(8,127,91,.018) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(8,127,91,.018) 1px,transparent 1px);
+    background-size:42px 42px;
+    mask-image:linear-gradient(to bottom,black,transparent 82%);
+}
+.hero-content{
+    animation:heroEnter .9s cubic-bezier(.2,.8,.2,1) both;
+}
+.hero h1{
+    animation:headlineReveal 1s .12s cubic-bezier(.2,.8,.2,1) both;
+}
+.hero-description{
+    animation:fadeUp .8s .28s both;
+}
+.hero-buttons{
+    animation:fadeUp .8s .4s both;
+}
+.badge{
+    animation:badgeIn .8s both, pulse 3s 1s infinite;
+}
+.primary,.secondary,.nav-btn{
+    position:relative;
+    overflow:hidden;
+}
+.primary:after,.nav-btn:after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:80%;
+    height:100%;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.24),transparent);
+    transform:skewX(-20deg);
+    transition:left .55s ease;
+}
+.primary:hover:after,.nav-btn:hover:after{left:130%}
+
+.trust-strip{
+    display:flex;
+    gap:18px;
+    margin-top:28px;
+    animation:fadeUp .8s .52s both;
+}
+.trust-strip>div{
+    padding-left:13px;
+    border-left:2px solid #d9ebe4;
+}
+.trust-strip strong{
+    display:block;
+    font-size:10px;
+    color:#163c30;
+}
+.trust-strip span{
+    display:block;
+    margin-top:3px;
+    color:#81918b;
+    font-size:9px;
+}
+
+.hero-dashboard{
+    animation:dashboardEnter 1s .18s cubic-bezier(.2,.8,.2,1) both, floatCard 5s 1.2s ease-in-out infinite;
+}
+.dashboard-window{
+    position:relative;
+    overflow:hidden;
+}
+.dashboard-window:before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:22px;
+    pointer-events:none;
+    background:linear-gradient(120deg,rgba(255,255,255,.7),transparent 35%);
+}
+.map{
+    box-shadow:inset 0 0 0 1px rgba(8,127,91,.04);
+}
+.map-scan{
+    position:absolute;
+    width:35%;
+    height:100%;
+    top:0;
+    left:-40%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);
+    transform:skewX(-15deg);
+    animation:mapScan 4.5s 1.5s infinite;
+    z-index:3;
+}
+.map-label{
+    position:absolute;
+    z-index:4;
+    font-size:7px;
+    font-weight:800;
+    letter-spacing:.7px;
+    background:rgba(255,255,255,.82);
+    color:#087f5b;
+    padding:5px 7px;
+    border-radius:6px;
+    box-shadow:0 4px 12px rgba(20,60,45,.07);
+}
+.map-label-a{left:10px;top:10px}
+.map-label-b{right:10px;bottom:10px}
+.pin:hover{transform:scale(1.25)}
+
+.section-label{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+}
+.section-label:before{
+    content:"";
+    width:20px;
+    height:2px;
+    background:#f59f00;
+    display:inline-block;
+}
+
+.reveal-section .container{
+    opacity:0;
+    transform:translateY(25px);
+    transition:opacity .75s ease,transform .75s ease;
+}
+.reveal-section.visible .container{
+    opacity:1;
+    transform:none;
+}
+
+.stat-card{
+    opacity:0;
+    transform:translateY(18px);
+    animation:none;
+}
+.visible .stat-card{
+    animation:cardIn .65s ease forwards;
+}
+.visible .stat-card:nth-child(2){animation-delay:.08s}
+.visible .stat-card:nth-child(3){animation-delay:.16s}
+.visible .stat-card:nth-child(4){animation-delay:.24s}
+
+.accountability-note{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    background:#edf8f3;
+    border:1px solid #d8eee5;
+    color:#536d63;
+    border-radius:12px;
+    padding:12px 15px;
+    font-size:11px;
+    margin:-15px 0 22px;
+}
+.accountability-note strong{color:#173d31}
+.note-icon{
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:#087f5b;
+    color:white;
+    font-weight:800;
+    flex:none;
+}
+.results-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:-8px 0 14px;
+    color:#8a9993;
+    font-size:10px;
+}
+.updated-dot{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+.issue-card{
+    position:relative;
+}
+.issue-card:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:18px;
+    bottom:18px;
+    width:3px;
+    border-radius:4px;
+    background:#d9ebe4;
+    transition:.3s;
+}
+.issue-card:hover:before{background:#087f5b}
+.issue-card .status{
+    transition:transform .25s ease;
+}
+.issue-card:hover .status{transform:scale(1.04)}
+
+.impact-box{
+    transition:transform .35s ease,border-color .35s ease,background .35s ease;
+}
+.impact-box:hover{
+    transform:translateY(-4px);
+    border-color:rgba(54,211,154,.28);
+    background:rgba(255,255,255,.075);
+}
+.flow-step{
+    transition:transform .3s ease,background .3s ease;
+}
+.flow-step:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,.1);
+}
+.flow-step:nth-child(1) .flow-icon{animation:flowPulse 2.4s infinite}
+.flow-step:nth-child(2) .flow-icon{animation:flowPulse 2.4s .35s infinite}
+.flow-step:nth-child(3) .flow-icon{animation:flowPulse 2.4s .7s infinite}
+.flow-step:nth-child(4) .flow-icon{animation:flowPulse 2.4s 1.05s infinite}
+
+.modal{
+    animation:backdropIn .2s ease;
+}
+.modal-box{
+    border:1px solid #e3eee9;
+}
+.modal-kicker{
+    color:#087f5b;
+    font-size:9px;
+    font-weight:800;
+    letter-spacing:1.2px;
+    margin-bottom:4px;
+}
+.submit-btn{
+    position:relative;
+    overflow:hidden;
+}
+.submit-btn:active{transform:scale(.99)}
+
+.toast{
+    border:1px solid rgba(255,255,255,.08);
+}
+.toast.show{
+    animation:toastPop .4s cubic-bezier(.2,.8,.2,1);
+}
+
+footer{
+    position:relative;
+    overflow:hidden;
+}
+footer:before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:-80px;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(54,211,154,.07);
+    filter:blur(8px);
+}
+
+@keyframes heroEnter{
+    from{opacity:0;transform:translateX(-25px)}
+    to{opacity:1;transform:translateX(0)}
+}
+@keyframes headlineReveal{
+    from{opacity:0;transform:translateY(18px);filter:blur(5px)}
+    to{opacity:1;transform:none;filter:blur(0)}
+}
+@keyframes badgeIn{
+    from{opacity:0;transform:translateY(-8px) scale(.96)}
+    to{opacity:1;transform:none}
+}
+@keyframes dashboardEnter{
+    from{opacity:0;transform:translateX(30px) scale(.96)}
+    to{opacity:1;transform:translateX(0) scale(1)}
+}
+@keyframes mapScan{
+    0%{left:-40%}
+    45%,100%{left:120%}
+}
+@keyframes statusBlink{
+    0%,100%{opacity:.55;transform:scale(.9)}
+    50%{opacity:1;transform:scale(1.15)}
+}
+@keyframes flowPulse{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-3px) scale(1.04)}
+}
+@keyframes backdropIn{
+    from{opacity:0}
+    to{opacity:1}
+}
+@keyframes toastPop{
+    0%{transform:translateY(18px) scale(.96)}
+    100%{transform:translateY(0) scale(1)}
+}
+
+@media (prefers-reduced-motion:reduce){
+    *,*:before,*:after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        scroll-behavior:auto !important;
+        transition-duration:.01ms !important;
+    }
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+
+    .hero{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .hero-dashboard{
+        width:100%;
+        max-width:500px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .issue-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .impact-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .utility-inner{width:92%;font-size:9px}
+    .utility-status{display:none}
+    nav{top:30px;padding:0 4%}
+    .brand-caption{display:none}
+    .brand-mark{width:30px;height:30px}
+    .trust-strip{flex-direction:column;gap:9px}
+    .results-head{align-items:flex-start;gap:8px;flex-direction:column}
+
+    nav{
+        padding:0 4%;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding-left:5%;
+        padding-right:5%;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .issue-grid{
+        grid-template-columns:1fr;
+    }
+
+    .flow{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+/* ===== CivicFix human-designed refinement =====
+   Less glass, fewer gradients, restrained motion, stronger civic-portal hierarchy. */
+:root{
+  --cf-green:#0b6b4f;
+  --cf-green-dark:#07543e;
+  --cf-ink:#17312a;
+  --cf-muted:#64756f;
+  --cf-line:#dce6e2;
+  --cf-paper:#ffffff;
+  --cf-bg:#f3f6f4;
+  --cf-soft:#edf4f1;
+  --cf-amber:#a96808;
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,Helvetica,sans-serif !important;
+  background:var(--cf-bg) !important;
+  color:var(--cf-ink) !important;
+  letter-spacing:0 !important;
+}
+
+/* Utility strip: factual, not decorative */
+.utility-bar{
+  background:#173a31 !important;
+  min-height:32px !important;
+  box-shadow:none !important;
+}
+.utility-inner{
+  max-width:1180px !important;
+  font-size:11px !important;
+  letter-spacing:.02em !important;
+}
+
+/* Navigation */
+nav{
+  height:68px !important;
+  padding:0 max(24px,5%) !important;
+  background:#fff !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  border-bottom:1px solid var(--cf-line) !important;
+  box-shadow:0 1px 8px rgba(19,49,42,.05) !important;
+}
+.logo{
+  font-size:22px !important;
+  letter-spacing:-.4px !important;
+}
+.logo-main{color:var(--cf-green) !important}
+.logo-dot{color:#c58a2a !important}
+.brand-caption{
+  font-size:10px !important;
+  color:#77857f !important;
+  letter-spacing:.05em !important;
+  text-transform:uppercase !important;
+}
+.nav-links{gap:26px !important}
+.nav-links a{
+  color:#465a53 !important;
+  font-size:13px !important;
+  font-weight:600 !important;
+}
+.nav-links a:hover{color:var(--cf-green) !important}
+.nav-btn.primary{
+  background:var(--cf-green) !important;
+  border-radius:5px !important;
+  box-shadow:none !important;
+  font-weight:700 !important;
+}
+
+/* Remove decorative "AI generated" atmosphere */
+.orb,.map-scan{display:none !important}
+.reveal-section{
+  opacity:1 !important;
+  transform:none !important;
+}
+*{animation-duration:.25s !important}
+.hero{
+  background:#f3f6f4 !important;
+  min-height:620px !important;
+}
+.hero:before,.hero:after{display:none !important}
+.badge{
+  background:#e8f2ee !important;
+  border:1px solid #cfe1d9 !important;
+  color:#17674f !important;
+  box-shadow:none !important;
+  border-radius:4px !important;
+}
+.hero h1{
+  font-size:clamp(42px,5.4vw,68px) !important;
+  line-height:1.02 !important;
+  letter-spacing:-2.4px !important;
+  max-width:680px !important;
+}
+.gradient-text{
+  background:none !important;
+  color:var(--cf-green) !important;
+  -webkit-text-fill-color:initial !important;
+}
+.hero-description{
+  max-width:590px !important;
+  color:#5f7069 !important;
+  font-size:16px !important;
+  line-height:1.7 !important;
+}
+.hero-buttons{gap:10px !important}
+.hero-buttons .primary,
+.hero-buttons .secondary{
+  border-radius:5px !important;
+  box-shadow:none !important;
+}
+.hero-buttons .secondary{
+  background:#fff !important;
+  border:1px solid #cbd8d3 !important;
+  color:#24473c !important;
+}
+
+/* Dashboard card: make it look like a real civic dashboard */
+.hero-dashboard{
+  filter:none !important;
+  transform:none !important;
+}
+.dashboard-window{
+  border-radius:8px !important;
+  background:#fff !important;
+  border:1px solid #d5e0dc !important;
+  box-shadow:0 14px 35px rgba(27,57,48,.10) !important;
+  overflow:hidden !important;
+}
+.window-top{
+  background:#f7f9f8 !important;
+  border-bottom:1px solid #e2e9e6 !important;
+}
+.window-dots{display:none !important}
+.window-top:after{
+  content:"Community issue dashboard";
+  color:#61736c;
+  font-size:11px;
+  font-weight:600;
+}
+.map{
+  background:#eef3f1 !important;
+  border-radius:0 !important;
+}
+.map-label{
+  background:#fff !important;
+  border:1px solid #dbe5e1 !important;
+  box-shadow:none !important;
+}
+.pin{box-shadow:none !important}
+
+/* Sections */
+.container{max-width:1180px !important}
+.section-label{
+  color:var(--cf-green) !important;
+  letter-spacing:.08em !important;
+  font-size:11px !important;
+  font-weight:700 !important;
+}
+.section-title{
+  letter-spacing:-.7px !important;
+  font-size:34px !important;
+}
+.section-subtitle{
+  color:#687972 !important;
+  max-width:650px !important;
+}
+
+/* Stats: simple government/service-report style */
+.stats{gap:12px !important}
+.stat-card{
+  background:#fff !important;
+  border:1px solid var(--cf-line) !important;
+  border-radius:7px !important;
+  box-shadow:none !important;
+  padding:22px !important;
+}
+.stat-card:hover{
+  transform:none !important;
+  box-shadow:0 5px 18px rgba(30,65,54,.07) !important;
+}
+.stat-icon{
+  width:34px !important;
+  height:34px !important;
+  border-radius:6px !important;
+  background:#eaf3ef !important;
+}
+
+/* Issue list */
+.issue-toolbar{
+  background:#fff !important;
+  border:1px solid var(--cf-line) !important;
+  border-radius:7px !important;
+  box-shadow:none !important;
+}
+.issue-card{
+  background:#fff !important;
+  border:1px solid var(--cf-line) !important;
+  border-radius:7px !important;
+  box-shadow:none !important;
+}
+.issue-card:hover{
+  transform:translateY(-2px) !important;
+  box-shadow:0 8px 22px rgba(25,61,49,.08) !important;
+}
+.issue-icon{
+  width:40px !important;
+  height:40px !important;
+  border-radius:6px !important;
+  background:#eaf2ef !important;
+  color:#12674f !important;
+  font-size:12px !important;
+  font-weight:800 !important;
+  letter-spacing:.04em !important;
+}
+.issue-meta{color:#708079 !important}
+.status{
+  border-radius:4px !important;
+  font-size:10px !important;
+  font-weight:700 !important;
+}
+
+/* Evidence photos: real-photo presentation */
+.evidence{
+  border-top:1px solid #edf1ef !important;
+  padding-top:18px !important;
+}
+.evidence-photo{
+  max-height:270px !important;
+  object-fit:cover !important;
+  border-radius:6px !important;
+  box-shadow:none !important;
+}
+.evidence-caption{
+  color:#7a8983 !important;
+  font-size:10px !important;
+}
+
+/* Modals: less rounded, less floating */
+.modal-box{
+  border-radius:8px !important;
+  box-shadow:0 22px 60px rgba(15,42,34,.22) !important;
+  border:1px solid #d9e3df !important;
+}
+.modal-header{
+  border-bottom:1px solid #e5ebe8 !important;
+}
+.close{
+  border-radius:4px !important;
+}
+.form-group input,.form-group select,.form-group textarea{
+  border-radius:5px !important;
+  border:1px solid #cfdcd7 !important;
+  box-shadow:none !important;
+}
+.submit-btn{
+  border-radius:5px !important;
+  box-shadow:none !important;
+}
+
+/* Flow section */
+.flow{
+  border-top:1px solid var(--cf-line) !important;
+}
+.flow-step{
+  background:#fff !important;
+  border:1px solid var(--cf-line) !important;
+  border-radius:7px !important;
+  box-shadow:none !important;
+}
+.flow-icon{
+  border-radius:6px !important;
+  background:#eaf3ef !important;
+}
+
+/* Accountability note */
+.accountability-note{
+  background:#fff !important;
+  border:1px solid #d7e2dd !important;
+  border-left:4px solid var(--cf-green) !important;
+  border-radius:5px !important;
+  box-shadow:none !important;
+}
+
+/* Footer */
+footer{
+  background:#173a31 !important;
+}
+
+</style>
+
+<style id="civicfix-polish">
+/* =========================================================
+   CIVICFIX — FINAL UI POLISH
+   Cleaner product UI, restrained motion, stronger hierarchy.
+   ========================================================= */
+:root{
+  --ui-green:#0b6b4f;
+  --ui-green-2:#087f5b;
+  --ui-ink:#18342b;
+  --ui-muted:#667871;
+  --ui-line:#dfe7e3;
+  --ui-bg:#f5f7f6;
+  --ui-card:#ffffff;
+  --ui-soft:#edf4f1;
+  --ui-shadow:0 8px 24px rgba(20,50,41,.07);
+  --ui-shadow-lg:0 18px 42px rgba(20,50,41,.11);
+}
+
+/* Base */
+html{scroll-behavior:smooth}
+body{
+  background:var(--ui-bg) !important;
+  color:var(--ui-ink) !important;
+  -webkit-font-smoothing:antialiased;
+}
+button,input,select,textarea{font:inherit}
+button{ -webkit-tap-highlight-color:transparent }
+
+/* Top service strip */
+.utility-bar{
+  background:#163c31 !important;
+  min-height:30px !important;
+  font-size:10px !important;
+}
+.utility-status i,.updated-dot i{
+  animation:none !important;
+  box-shadow:none !important;
+}
+
+/* Navigation: stable, clean, no glass effect */
+nav{
+  top:30px !important;
+  height:70px !important;
+  padding:0 max(28px,5%) !important;
+  background:rgba(255,255,255,.97) !important;
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+  border-bottom:1px solid var(--ui-line) !important;
+  box-shadow:0 1px 0 rgba(20,50,41,.03) !important;
+  transition:box-shadow .22s ease, height .22s ease !important;
+}
+nav.scrolled{
+  height:64px !important;
+  box-shadow:0 7px 22px rgba(20,50,41,.07) !important;
+}
+.brand-mark{
+  width:35px !important;height:35px !important;
+  border-radius:7px !important;
+  box-shadow:none !important;
+}
+.logo{font-size:21px !important;letter-spacing:-.5px !important}
+.brand-caption{font-size:9px !important;letter-spacing:.06em !important}
+.nav-links{gap:28px !important}
+.nav-links a{
+  position:relative;
+  font-size:13px !important;
+  color:#4c6059 !important;
+}
+.nav-links a:after{
+  content:"";
+  position:absolute;
+  left:0;right:100%;bottom:-7px;
+  height:2px;
+  background:var(--ui-green-2);
+  transition:right .2s ease;
+}
+.nav-links a:hover:after{right:0}
+.nav-btn{
+  border-radius:5px !important;
+  padding:11px 17px !important;
+  box-shadow:none !important;
+  transition:background .2s ease,transform .2s ease !important;
+}
+.nav-btn:hover{
+  transform:translateY(-1px) !important;
+  box-shadow:none !important;
+  background:#075c45 !important;
+}
+.primary:after,.nav-btn:after{display:none !important}
+
+/* Hero */
+.hero{
+  min-height:650px !important;
+  padding:155px 7% 76px !important;
+  background:#f5f7f6 !important;
+}
+.hero:after{display:none !important}
+.orb{display:none !important}
+.hero-content{animation:cfHeroIn .65s cubic-bezier(.22,.7,.2,1) both !important}
+.badge{
+  animation:cfFade .5s ease both !important;
+  border-radius:5px !important;
+  padding:7px 10px !important;
+  background:#e9f3ef !important;
+  border:1px solid #d2e4dc !important;
+  box-shadow:none !important;
+}
+.hero h1{
+  animation:cfHeroText .7s .06s cubic-bezier(.22,.7,.2,1) both !important;
+  font-size:clamp(44px,5.3vw,66px) !important;
+  letter-spacing:-2.7px !important;
+}
+.gradient-text{
+  background:none !important;
+  color:var(--ui-green) !important;
+  -webkit-text-fill-color:initial !important;
+}
+.hero-description{
+  animation:cfFade .65s .14s ease both !important;
+  color:#60716b !important;
+  font-size:16px !important;
+  line-height:1.72 !important;
+}
+.hero-buttons{
+  animation:cfFade .65s .22s ease both !important;
+}
+.hero-buttons .primary,.hero-buttons .secondary{
+  border-radius:5px !important;
+  box-shadow:none !important;
+  transition:transform .18s ease,background .18s ease,border-color .18s ease !important;
+}
+.hero-buttons .primary:hover{transform:translateY(-2px) !important}
+.hero-buttons .secondary:hover{
+  transform:translateY(-2px) !important;
+  border-color:#b8cbc3 !important;
+}
+.trust-strip{
+  animation:cfFade .65s .3s ease both !important;
+  gap:0 !important;
+}
+.trust-strip>div{
+  padding-left:14px !important;
+  padding-right:22px;
+  border-left:1px solid #d5e2dc !important;
+}
+.trust-strip>div:first-child{padding-left:0;border-left:0 !important}
+
+/* Hero dashboard: make it feel like an actual product preview */
+.hero-dashboard{
+  animation:cfDashboardIn .7s .1s cubic-bezier(.22,.7,.2,1) both !important;
+  transform:none !important;
+}
+.dashboard-window{
+  padding:0 !important;
+  border-radius:8px !important;
+  background:#fff !important;
+  border:1px solid #d8e2de !important;
+  box-shadow:var(--ui-shadow-lg) !important;
+  overflow:hidden !important;
+}
+.window-top{
+  height:48px;
+  margin:0 !important;
+  padding:0 17px;
+  align-items:center;
+  background:#fafbfa !important;
+  border-bottom:1px solid #e6ebe9;
+}
+.window-dots{display:none !important}
+.window-top:after{
+  content:"Community issue dashboard";
+  color:#51655e;
+  font-size:11px;
+  font-weight:700;
+}
+.live{
+  font-size:9px !important;
+  letter-spacing:.05em;
+  color:#6d7c76 !important;
+}
+.map{
+  height:205px !important;
+  border-radius:0 !important;
+  background:
+    linear-gradient(30deg,transparent 47%,rgba(79,121,105,.11) 48%,transparent 49%),
+    linear-gradient(145deg,transparent 47%,rgba(79,121,105,.09) 48%,transparent 49%),
+    #edf2f0 !important;
+}
+.map-label{
+  box-shadow:none !important;
+  border-radius:4px !important;
+  font-size:8px !important;
+  padding:5px 6px !important;
+}
+.pin{
+  width:14px !important;height:14px !important;
+  box-shadow:0 0 0 4px rgba(8,127,91,.10) !important;
+  animation:cfPin 2.8s ease-in-out infinite !important;
+}
+.mini-cards{
+  padding:14px !important;
+  margin:0 !important;
+  gap:9px !important;
+  background:#fff;
+}
+.mini-card{
+  border:1px solid #e3ebe7 !important;
+  border-radius:6px !important;
+  background:#f8faf9 !important;
+  padding:11px !important;
+}
+.mini-card strong{font-size:18px !important;color:#1d4035}
+.mini-card span{font-size:9px !important}
+
+/* Shared section hierarchy */
+section{padding:78px 0 !important}
+.container{max-width:1180px !important}
+.section-label{
+  font-size:10px !important;
+  letter-spacing:.1em !important;
+  color:var(--ui-green) !important;
+  margin-bottom:9px !important;
+}
+.section-label:before{
+  width:16px !important;
+  height:1px !important;
+  background:#bd852a !important;
+}
+.section-title{
+  font-size:33px !important;
+  letter-spacing:-.8px !important;
+}
+.section-subtitle{
+  color:#687972 !important;
+  font-size:14px !important;
+  line-height:1.6;
+}
+
+/* Stats */
+.stats{gap:12px !important}
+.stat-card{
+  border-radius:7px !important;
+  padding:21px !important;
+  box-shadow:none !important;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease !important;
+}
+.stat-card:hover{
+  transform:translateY(-3px) !important;
+  box-shadow:var(--ui-shadow) !important;
+  border-color:#cfded8 !important;
+}
+.stat-icon{
+  width:34px !important;height:34px !important;
+  border-radius:6px !important;
+  font-size:15px !important;
+  margin-bottom:15px !important;
+}
+.stat-card h2{font-size:28px !important}
+
+/* Issue toolbar */
+.issue-toolbar{
+  gap:8px !important;
+  padding:10px !important;
+  margin-bottom:17px !important;
+  background:#fff !important;
+  border:1px solid var(--ui-line) !important;
+  border-radius:7px !important;
+}
+input,select,textarea{
+  border-radius:5px !important;
+  border-color:#d2ded9 !important;
+  box-shadow:none !important;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:#75a794 !important;
+  box-shadow:0 0 0 3px rgba(8,127,91,.06) !important;
+}
+.search{min-height:42px}
+.issue-toolbar select{min-height:42px}
+
+/* Results row */
+.results-head{
+  margin:-3px 0 12px !important;
+  color:#7a8983 !important;
+}
+
+/* Issue cards */
+.issue-grid{gap:14px !important}
+.issue-card{
+  padding:19px !important;
+  border-radius:7px !important;
+  box-shadow:none !important;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease !important;
+  animation:cfCardIn .4s ease both !important;
+}
+.issue-card:hover{
+  transform:translateY(-3px) !important;
+  box-shadow:var(--ui-shadow) !important;
+  border-color:#c9dcd4 !important;
+}
+.issue-card:before{
+  width:2px !important;
+  top:16px !important;
+  bottom:16px !important;
+  background:#d8e7e1 !important;
+}
+.issue-card:hover:before{background:var(--ui-green) !important}
+.issue-top{margin-bottom:14px !important}
+.issue-icon{
+  width:38px !important;height:38px !important;
+  display:grid !important;place-items:center !important;
+  border-radius:6px !important;
+  background:#edf4f1 !important;
+  font-size:11px !important;
+  font-weight:800 !important;
+}
+.status{
+  border-radius:4px !important;
+  padding:5px 8px !important;
+}
+.issue-card h3{font-size:15px !important}
+.issue-card p{font-size:11.5px !important}
+.meta{
+  border-radius:4px !important;
+  padding:5px 7px !important;
+}
+
+/* Accountability note */
+.accountability-note{
+  border-radius:5px !important;
+  margin:-9px 0 17px !important;
+  padding:11px 13px !important;
+  font-size:10.5px !important;
+}
+.note-icon{
+  width:24px !important;height:24px !important;
+  border-radius:5px !important;
+}
+
+/* Impact: remove glassy look */
+.impact{
+  background:#173a31 !important;
+}
+.impact .section-label{color:#9fd5bf !important}
+.impact-box{
+  background:#1c463b !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+  border-radius:8px !important;
+  box-shadow:none !important;
+  backdrop-filter:none !important;
+  transition:transform .2s ease,border-color .2s ease !important;
+}
+.impact-box:hover{
+  transform:translateY(-2px) !important;
+  border-color:rgba(255,255,255,.18) !important;
+  background:#1c463b !important;
+}
+.bar-fill{
+  background:#5bc39d !important;
+  animation:cfGrow .9s ease both !important;
+}
+.flow{gap:8px !important}
+.flow-step{
+  background:#214c41 !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+  border-radius:6px !important;
+  transition:transform .2s ease,background .2s ease !important;
+}
+.flow-step:hover{
+  transform:translateY(-3px) !important;
+  background:#285448 !important;
+}
+.flow-icon{animation:none !important}
+
+/* Modals */
+.modal{
+  background:rgba(10,28,23,.56) !important;
+  backdrop-filter:blur(3px) !important;
+}
+.modal-box{
+  max-width:570px !important;
+  border-radius:8px !important;
+  padding:25px !important;
+  border:1px solid #d8e3de !important;
+  box-shadow:0 24px 70px rgba(10,30,24,.22) !important;
+  animation:cfModalIn .22s cubic-bezier(.2,.7,.2,1) both !important;
+}
+.modal-header{
+  padding-bottom:15px !important;
+  margin-bottom:20px !important;
+  border-bottom:1px solid #e7ecea !important;
+}
+.close{
+  width:32px;height:32px;
+  display:grid;place-items:center;
+  border:1px solid #e0e8e4;
+  border-radius:5px !important;
+  font-size:21px !important;
+  transition:background .15s ease,color .15s ease !important;
+}
+.close:hover{background:#f1f5f3;color:#173c31}
+.form-group{margin-bottom:14px !important}
+.form-group label{font-size:11px !important;margin-bottom:6px !important}
+.submit-btn{
+  border-radius:5px !important;
+  padding:13px !important;
+  transition:transform .15s ease,background .15s ease !important;
+}
+.submit-btn:hover{
+  background:#075c45 !important;
+  transform:translateY(-1px);
+}
+
+/* Evidence */
+.evidence{margin-top:22px !important}
+.evidence-photo{
+  height:220px !important;
+  border-radius:6px !important;
+  box-shadow:none !important;
+  animation:cfFade .35s ease both !important;
+}
+.evidence-placeholder{border-radius:6px !important}
+
+/* Timeline */
+.timeline{margin:25px 0 !important}
+.timeline:before{height:2px !important}
+.dot{width:27px !important;height:27px !important}
+.step.active .dot{box-shadow:0 0 0 4px rgba(8,127,91,.09) !important}
+
+/* Toast */
+.toast{
+  right:22px !important;
+  bottom:22px !important;
+  border-radius:6px !important;
+  box-shadow:0 12px 30px rgba(0,0,0,.16) !important;
+  padding:13px 16px !important;
+}
+
+/* Footer */
+footer{
+  background:#102d25 !important;
+  padding:34px 20px !important;
+}
+footer:before{display:none !important}
+
+/* Entrance animations — short and subtle */
+@keyframes cfFade{
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes cfHeroIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:none}
+}
+@keyframes cfHeroText{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
+}
+@keyframes cfDashboardIn{
+  from{opacity:0;transform:translateX(14px)}
+  to{opacity:1;transform:none}
+}
+@keyframes cfCardIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:none}
+}
+@keyframes cfModalIn{
+  from{opacity:0;transform:translateY(8px) scale(.985)}
+  to{opacity:1;transform:none}
+}
+@keyframes cfGrow{
+  from{transform:scaleX(0)}
+  to{transform:scaleX(1)}
+}
+@keyframes cfPin{
+  0%,100%{box-shadow:0 0 0 4px rgba(8,127,91,.09)}
+  50%{box-shadow:0 0 0 7px rgba(8,127,91,.04)}
+}
+
+/* Accessibility + mobile */
+@media(max-width:900px){
+  .hero{padding-top:140px !important}
+  .hero-dashboard{width:min(100%,500px);margin-top:10px}
+}
+@media(max-width:600px){
+  .utility-inner{width:92% !important}
+  nav{padding:0 4% !important}
+  .hero{padding:125px 5% 60px !important}
+  .hero h1{font-size:43px !important;letter-spacing:-1.8px !important}
+  .hero-buttons{gap:8px !important}
+  .trust-strip>div{padding-right:0 !important}
+  .dashboard-window{width:100%}
+  section{padding:62px 0 !important}
+  .section-title{font-size:29px !important}
+  .issue-toolbar{display:grid !important;grid-template-columns:1fr 1fr !important}
+  .issue-toolbar .search{grid-column:1/-1}
+  .issue-toolbar select{width:100%}
+  .modal-box{padding:20px !important}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto !important}
+  *,*:before,*:after{
+    animation:none !important;
+    transition:none !important;
+  }
+}
+</style>
+
+</head>
+
+<body>
+<div class="utility-bar">
+    <div class="utility-inner">
+        <span>🇮🇳 Community Public Service Portal</span>
+        <span class="utility-status"><i></i> Prototype service portal</span>
+    </div>
+</div>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <div class="brand-wrap">
+        <div class="brand-mark">CF</div>
+        <div>
+            <div class="logo">
+                <span class="logo-main">Civic</span><span>Fix</span><span class="logo-dot">.</span>
+            </div>
+            <div class="brand-caption">Community Service Portal</div>
+        </div>
+    </div>
+
+    <ul class="nav-links">
+        <li><a onclick="scrollToId('dashboard')">Dashboard</a></li>
+        <li><a onclick="scrollToId('issues')">Issues</a></li>
+        <li><a onclick="scrollToId('impact')">Impact</a></li>
+    </ul>
+
+    <button class="nav-btn" onclick="openReport()">
+        + Report Issue
+    </button>
+
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero">
+
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <div class="hero-content">
+
+        <div class="badge">
+            ● Community-powered civic platform
+        </div>
+
+        <h1>
+            Make your<br>
+            <span class="gradient-text">community better.</span>
+        </h1>
+
+        <p class="hero-description">
+            Report local problems, track their progress and help verify
+            real-world solutions. CivicFix turns everyday complaints
+            into measurable community action.
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary" onclick="openReport()">
+                Report a Problem →
+            </button>
+
+            <button class="secondary"
+                    onclick="scrollToId('issues')">
+                Explore Issues
+            </button>
+
+        </div>
+
+        <div class="trust-strip">
+            <div><strong>Transparent</strong><span>Public issue tracking</span></div>
+            <div><strong>Accountable</strong><span>Status updates</span></div>
+            <div><strong>Community-led</strong><span>Resolution verification</span></div>
+        </div>
+
+    </div>
+
+
+    <!-- FLOATING DASHBOARD -->
+
+    <div class="hero-dashboard">
+
+        <div class="dashboard-window">
+
+            <div class="window-top">
+
+                <div class="window-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="live">
+                    ● DEMO COMMUNITY DASHBOARD
+                </div>
+
+            </div>
+
+
+            <div class="map">
+                <div class="map-scan"></div>
+                <div class="map-label map-label-a">WARD 04</div>
+                <div class="map-label map-label-b">ACTIVE REPORT</div>
+
+                <div class="map-line"></div>
+                <div class="map-line"></div>
+                <div class="map-line"></div>
+
+                <div class="pin pin1"></div>
+                <div class="pin pin2"></div>
+                <div class="pin pin3"></div>
+                <div class="pin pin4"></div>
+
+            </div>
+
+
+            <div class="mini-cards">
+
+                <div class="mini-card">
+                    <strong id="heroReported">127</strong>
+                    <span>Reported</span>
+                </div>
+
+                <div class="mini-card">
+                    <strong id="heroResolved">89</strong>
+                    <span>Resolved</span>
+                </div>
+
+                <div class="mini-card">
+                    <strong>70%</strong>
+                    <span>Resolution</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard" class="reveal-section">
+
+<div class="container">
+
+    <div class="section-label">Community Overview</div>
+
+    <h2 class="section-title">
+        A clearer way to report civic issues.
+    </h2>
+
+    <p class="section-subtitle">
+        Track the health of your community through transparent civic data.
+    </p>
+
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <div class="stat-icon">📋</div>
+
+            <h2 id="reportedCount">127</h2>
+
+            <p>Total Issues Reported</p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">✅</div>
+
+            <h2 id="resolvedCount">89</h2>
+
+            <p>Issues Resolved</p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">⚡</div>
+
+            <h2 id="activeCount">38</h2>
+
+            <p>Active Issues</p>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">👥</div>
+
+            <h2>3,420</h2>
+
+            <p>People Impacted</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ISSUES -->
+
+<section id="issues" class="reveal-section">
+
+<div class="container">
+
+    <div class="section-label">
+        Community Reports
+    </div>
+
+    <h2 class="section-title">
+        Current community reports
+    </h2>
+
+    <p class="section-subtitle">
+        Explore problems reported by citizens in the community.
+    </p>
+    <div class="accountability-note">
+        <span class="note-icon">✓</span>
+        <div><strong>Every report has a status.</strong> Follow it from submission to resolution and community verification.</div>
+    </div>
+
+
+    <div class="issue-toolbar">
+
+        <input
+            id="search"
+            class="search"
+            placeholder="🔎 Search by issue or location..."
+            oninput="renderIssues()"
+        >
+
+        <select id="category" onchange="renderIssues()">
+
+            <option value="all">All categories</option>
+            <option value="Road">Road</option>
+            <option value="Waste">Waste</option>
+            <option value="Water">Water</option>
+            <option value="Electricity">Electricity</option>
+            <option value="Safety">Safety</option>
+            <option value="Infrastructure">Infrastructure</option>
+
+        </select>
+
+
+        <select id="status" onchange="renderIssues()">
+
+            <option value="all">All statuses</option>
+            <option value="Reported">Reported</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+
+        </select>
+
+    </div>
+
+
+    <div class="results-head">
+        <span id="resultsCount">Showing community reports</span>
+        <span class="updated-dot"><i></i> Data refreshed just now</span>
+    </div>
+    <div class="issue-grid" id="issueGrid"></div>
+
+</div>
+
+</section>
+
+
+<!-- IMPACT -->
+
+<section id="impact" class="impact reveal-section">
+
+<div class="container">
+
+    <div class="section-label">
+        Measurable Impact
+    </div>
+
+    <h2 class="section-title">
+        Report. Track. Verify.
+    </h2>
+
+    <p class="section-subtitle">
+        CivicFix focuses on the complete journey — not just reporting.
+    </p>
+
+
+    <div class="impact-grid">
+
+
+        <div class="impact-box">
+
+            <h3>Community Issues</h3>
+
+
+            <div class="bar">
+
+                <div class="bar-label">
+                    <span>Road & Infrastructure</span>
+                    <strong>42%</strong>
+                </div>
+
+                <div class="bar-bg">
+                    <div class="bar-fill" style="width:42%"></div>
+                </div>
+
+            </div>
+
+
+            <div class="bar">
+
+                <div class="bar-label">
+                    <span>Waste Management</span>
+                    <strong>27%</strong>
+                </div>
+
+                <div class="bar-bg">
+                    <div class="bar-fill" style="width:27%"></div>
+                </div>
+
+            </div>
+
+
+            <div class="bar">
+
+                <div class="bar-label">
+                    <span>Water & Drainage</span>
+                    <strong>18%</strong>
+                </div>
+
+                <div class="bar-bg">
+                    <div class="bar-fill" style="width:18%"></div>
+                </div>
+
+            </div>
+
+
+            <div class="bar">
+
+                <div class="bar-label">
+                    <span>Other Issues</span>
+                    <strong>13%</strong>
+                </div>
+
+                <div class="bar-bg">
+                    <div class="bar-fill" style="width:13%"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="impact-box">
+
+            <h3>The CivicFix Cycle</h3>
+
+
+            <div class="flow">
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">📸</div>
+
+                    <strong>REPORT</strong>
+
+                    <span>Spot a problem</span>
+
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">🔎</div>
+
+                    <strong>TRACK</strong>
+
+                    <span>Follow progress</span>
+
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">🛠️</div>
+
+                    <strong>FIX</strong>
+
+                    <span>Take action</span>
+
+                </div>
+
+
+                <div class="flow-step">
+
+                    <div class="flow-icon">✓</div>
+
+                    <strong>VERIFY</strong>
+
+                    <span>Confirm solution</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+    <h3>CivicFix.</h3>
+
+    <p>
+        Report. Track. Improve. Together.
+    </p>
+
+    <p style="margin-top:18px;">
+        Built as a social-impact technology prototype. CivicFix is a demonstration platform, not an official government website.
+    </p>
+
+</footer>
+
+
+<!-- REPORT MODAL -->
+
+<div class="modal" id="reportModal">
+
+<div class="modal-box">
+
+    <div class="modal-header">
+
+        <h2>Report a Community Issue</h2>
+
+        <span class="close" onclick="closeReport()">×</span>
+
+    </div>
+
+
+    <form id="reportForm">
+
+
+        <div class="form-group">
+
+            <label>Issue Title</label>
+
+            <input
+                id="issueTitle"
+                required
+                placeholder="e.g. Broken streetlight near school"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Category</label>
+
+            <select id="issueCategory" required>
+
+                <option value="">Select category</option>
+                <option>Road</option>
+                <option>Waste</option>
+                <option>Water</option>
+                <option>Electricity</option>
+                <option>Safety</option>
+                <option>Infrastructure</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Location</label>
+
+            <input
+                id="issueLocation"
+                required
+                placeholder="e.g. Main Road, Ward 4"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Priority</label>
+
+            <select id="issuePriority">
+
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+                <option>Critical</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Description</label>
+
+            <textarea
+                id="issueDescription"
+                required
+                placeholder="Describe what is happening..."
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>Photo</label>
+
+            <input id="issuePhoto" type="file" accept="image/*">
+
+        </div>
+
+
+        <button class="submit-btn">
+            Submit Community Report
+        </button>
+
+    </form>
+
+</div>
+
+</div>
+
+
+<!-- DETAIL MODAL -->
+
+<div class="modal" id="detailModal">
+
+<div class="modal-box">
+
+    <div class="modal-header">
+
+        <h2 id="detailTitle"></h2>
+
+        <span class="close" onclick="closeDetail()">×</span>
+
+    </div>
+
+    <div id="detailContent"></div>
+
+</div>
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* ================= DATA ================= */
+
+let issues = [
+
+{
+    id:1,
+    title:"Large pothole near junction",
+    category:"Road",
+    location:"Main Road, Ward 4",
+    description:"A large pothole is creating difficulty for vehicles and pedestrians.",
+    priority:"High",
+    status:"In Progress",
+    people:120,
+    icon:"RD",
+    photo:"https://upload.wikimedia.org/wikipedia/commons/1/14/Broken_Roads_in_India%27s_Capital_New_Delhi.jpg",
+    photoCredit:"Reference photo • Delhi, India • Wikimedia Commons (CC BY-SA 4.0)",
+    photoType:"demo"
+},
+
+{
+    id:2,
+    title:"Overflowing public dustbin",
+    category:"Waste",
+    location:"Market Street",
+    description:"Public waste bin has been overflowing for several days.",
+    priority:"Medium",
+    status:"Reported",
+    people:85,
+    icon:"WS",
+    photo:"https://upload.wikimedia.org/wikipedia/commons/5/55/Garbage_on_a_roadside.JPG",
+    photoCredit:"Reference photo • India • Wikimedia Commons (CC BY-SA 3.0)",
+    photoType:"demo"
+},
+
+{
+    id:3,
+    title:"Broken streetlight",
+    category:"Electricity",
+    location:"Lake View Road",
+    description:"Streetlight has not been working for the past week.",
+    priority:"High",
+    status:"Resolved",
+    people:210,
+    icon:"EL",
+    photo:"https://upload.wikimedia.org/wikipedia/commons/5/54/Street_Lights.jpg",
+    photoCredit:"Reference photo • Chengannur, Kerala, India • Wikimedia Commons (CC BY-SA 4.0)",
+    photoType:"demo"
+},
+
+{
+    id:4,
+    title:"Water pipe leakage",
+    category:"Water",
+    location:"Green Park Junction",
+    description:"Continuous water leakage from a damaged public pipe.",
+    priority:"Critical",
+    status:"In Progress",
+    people:340,
+    icon:"WT",
+    photo:"https://upload.wikimedia.org/wikipedia/commons/f/fe/Water_dripping_out_of_an_urban_water_supply_pipeline_in_India_20120311.jpg",
+    photoCredit:"Reference photo • India • Wikimedia Commons (CC BY-SA 3.0)",
+    photoType:"demo"
+},
+
+{
+    id:5,
+    title:"Damaged pedestrian railing",
+    category:"Infrastructure",
+    location:"Bus Stand Road",
+    description:"Damaged railing creates a safety risk for pedestrians.",
+    priority:"High",
+    status:"Reported",
+    people:180,
+    icon:"IN",
+    photo:"https://upload.wikimedia.org/wikipedia/commons/e/ea/Damaged_footpath_in_India.jpg",
+    photoCredit:"Reference photo • India, likely Karnataka • Wikimedia Commons (CC BY 4.0)",
+    photoType:"demo"
+},
+
+{
+    id:6,
+    title:"Blocked drainage",
+    category:"Safety",
+    location:"Central Market",
+    description:"Blocked drain causing water accumulation during rain.",
+    priority:"Critical",
+    status:"Resolved",
+    people:270,
+    icon:"DR",
+    photo:"https://upload.wikimedia.org/wikipedia/commons/f/f9/Such_a_bad_drain_of_Nayapalli.jpg",
+    photoCredit:"Reference photo • Bhubaneswar, Odisha, India • Wikimedia Commons (CC BY-SA 4.0)",
+    photoType:"demo"
+}
+
+];
+
+
+/* ================= RENDER ISSUES ================= */
+
+function renderIssues(){
+
+    const grid=document.getElementById("issueGrid");
+
+    const search=document
+        .getElementById("search")
+        .value
+        .toLowerCase();
+
+    const category=document
+        .getElementById("category")
+        .value;
+
+    const status=document
+        .getElementById("status")
+        .value;
+
+
+    const filtered=issues.filter(issue=>{
+
+        const matchesSearch=
+            issue.title.toLowerCase().includes(search) ||
+            issue.location.toLowerCase().includes(search);
+
+        const matchesCategory=
+            category==="all" ||
+            issue.category===category;
+
+        const matchesStatus=
+            status==="all" ||
+            issue.status===status;
+
+        return matchesSearch &&
+               matchesCategory &&
+               matchesStatus;
+
+    });
+
+
+    grid.innerHTML="";
+
+
+    filtered.forEach((issue,index)=>{
+
+        let statusClass="reported";
+
+        if(issue.status==="In Progress")
+            statusClass="progress";
+
+        if(issue.status==="Resolved")
+            statusClass="resolved";
+
+
+        grid.innerHTML+=`
+
+        <div class="issue-card"
+             style="animation-delay:${index*.07}s"
+             onclick="showIssue(${issue.id})">
+
+            <div class="issue-top">
+
+                <div class="issue-icon">
+                    ${issue.icon}
+                </div>
+
+                <span class="status ${statusClass}">
+                    ${issue.status}
+                </span>
+
+            </div>
+
+            <h3>${issue.title}</h3>
+
+            <p>
+                ${issue.description}
+            </p>
+
+            <div class="issue-meta">
+
+                <span class="meta">
+                    📍 ${issue.location}
+                </span>
+
+                <span class="meta">
+                    ${issue.category}
+                </span>
+
+                <span class="meta">
+                    👥 ${issue.people}
+                </span>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+
+/* ================= REPORT ================= */
+
+function openReport(){
+
+    document.getElementById("reportModal")
+        .style.display="flex";
+
+}
+
+function closeReport(){
+
+    document.getElementById("reportModal")
+        .style.display="none";
+
+}
+
+
+document.getElementById("reportForm")
+.addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const title=document.getElementById("issueTitle").value;
+    const category=document.getElementById("issueCategory").value;
+    const location=document.getElementById("issueLocation").value;
+    const priority=document.getElementById("issuePriority").value;
+    const description=document.getElementById("issueDescription").value;
+    const photoInput=document.getElementById("issuePhoto");
+    const photoFile=photoInput.files[0];
+
+    let icon="📌";
+
+    if(category==="Road") icon="🕳️";
+    if(category==="Waste") icon="🗑️";
+    if(category==="Water") icon="🚰";
+    if(category==="Electricity") icon="💡";
+    if(category==="Safety") icon="⚠️";
+    if(category==="Infrastructure") icon="🚧";
+
+    const addIssue=(photoData)=>{
+        issues.unshift({
+            id:Date.now(),
+            title,
+            category,
+            location,
+            priority,
+            description,
+            status:"Reported",
+            people:1,
+            icon,
+            photo:photoData || "",
+            photoCredit:photoData ? "Photo attached by reporter" : ""
+        });
+
+        this.reset();
+        closeReport();
+        renderIssues();
+        updateStats();
+        showToast("✓ Your issue has been reported with evidence!");
+        setTimeout(()=>{
+            scrollToId("issues");
+        },500);
+    };
+
+    if(photoFile){
+        const reader=new FileReader();
+        reader.onload=()=>addIssue(reader.result);
+        reader.readAsDataURL(photoFile);
+    }else{
+        addIssue("");
+    }
+});
+
+
+/* ================= ISSUE DETAILS ================= */
+
+function showIssue(id){
+
+    const issue=issues.find(i=>i.id===id);
+
+    if(!issue) return;
+
+
+    let active=1;
+
+    if(issue.status==="In Progress")
+        active=3;
+
+    if(issue.status==="Resolved")
+        active=4;
+
+
+    const steps=[
+        "Reported",
+        "Verified",
+        "In Progress",
+        "Resolved"
+    ];
+
+
+    let timeline="";
+
+
+    steps.forEach((step,index)=>{
+
+        timeline+=`
+
+        <div class="step ${index<active?"active":""}">
+
+            <div class="dot"></div>
+
+            <p>${step}</p>
+
+        </div>
+
+        `;
+
+    });
+
+
+    document.getElementById("detailTitle")
+        .innerText=issue.title;
+
+
+    document.getElementById("detailContent")
+        .innerHTML=`
+
+        <p style="color:#71817b;line-height:1.7">
+            ${issue.description}
+        </p>
+
+
+        <div style="
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:18px;
+            margin-top:25px;
+        ">
+
+            <div>
+                <strong>📍 Location</strong>
+                <p style="color:#71817b;margin-top:5px">
+                    ${issue.location}
+                </p>
+            </div>
+
+            <div>
+                <strong>⚡ Priority</strong>
+                <p style="color:#71817b;margin-top:5px">
+                    ${issue.priority}
+                </p>
+            </div>
+
+            <div>
+                <strong>👥 People affected</strong>
+                <p style="color:#71817b;margin-top:5px">
+                    ${issue.people}
+                </p>
+            </div>
+
+            <div>
+                <strong>📂 Category</strong>
+                <p style="color:#71817b;margin-top:5px">
+                    ${issue.category}
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="evidence">
+            <div class="evidence-head">
+                <strong>📷 Evidence</strong>
+                <span>${issue.photo ? (issue.photoType === "demo" ? "Real-world reference photo" : "Photo attached to this report") : "No photo attached"}</span>
+            </div>
+            ${
+                issue.photo
+                ? `<img class="evidence-photo" src="${issue.photo}" alt="Evidence reference for ${issue.title}">
+                   <div class="evidence-caption">✓ ${issue.photoType === "demo" ? (issue.photoCredit || "Real-world reference photo • not the actual reported location") : "Visual evidence submitted with the community report"}</div>`
+                : `<div class="evidence-placeholder">📷<br>Photo evidence not available for this report</div>`
+            }
+        </div>
+
+        <h3 style="margin-top:30px">
+            Resolution Journey
+        </h3>
+
+
+        <div class="timeline">
+            ${timeline}
+        </div>
+
+
+        ${
+            issue.status==="Resolved"
+
+            ?
+
+            `<div style="
+                background:#e7f8ef;
+                color:#087f5b;
+                padding:18px;
+                border-radius:12px;
+                margin-top:20px;
+            ">
+
+                <strong>✓ Issue marked as resolved</strong>
+
+                <p style="
+                    margin-top:7px;
+                    font-size:12px;
+                ">
+                    The community can now verify that the
+                    reported problem has actually been fixed.
+                </p>
+
+                <button
+                    onclick="verifyIssue()"
+                    style="
+                        margin-top:13px;
+                        border:0;
+                        background:#087f5b;
+                        color:white;
+                        padding:10px 14px;
+                        border-radius:8px;
+                        cursor:pointer;
+                        font-weight:700;
+                    ">
+                    Confirm Resolution
+                </button>
+
+            </div>`
+
+            :
+
+            `<div style="
+                background:#f4f8f6;
+                padding:18px;
+                border-radius:12px;
+                margin-top:20px;
+            ">
+
+                <strong>Community Impact Score</strong>
+
+                <div style="
+                    color:#087f5b;
+                    font-size:32px;
+                    font-weight:800;
+                    margin-top:5px;
+                ">
+                    ${impactScore(issue)}
+                </div>
+
+                <small style="color:#71817b">
+                    Based on urgency and people affected
+                </small>
+
+            </div>`
+        }
+
+    `;
+
+
+    document.getElementById("detailModal")
+        .style.display="flex";
+
+}
+
+
+function impactScore(issue){
+
+    let score=20;
+
+    if(issue.priority==="Medium") score=40;
+    if(issue.priority==="High") score=70;
+    if(issue.priority==="Critical") score=90;
+
+    return Math.min(
+        100,
+        Math.round(score+Math.min(issue.people/10,10))
+    );
+
+}
+
+
+function verifyIssue(){
+
+    closeDetail();
+
+    showToast("✓ Resolution verified by community!");
+
+}
+
+
+function closeDetail(){
+
+    document.getElementById("detailModal")
+        .style.display="none";
+
+}
+
+
+/* ================= STATS ================= */
+
+function updateStats(){
+
+    const reported=issues.length;
+
+    const resolved=
+        issues.filter(i=>i.status==="Resolved").length;
+
+    const active=
+        reported-resolved;
+
+
+    document.getElementById("reportedCount")
+        .innerText=127+(reported-6);
+
+    document.getElementById("resolvedCount")
+        .innerText=89+(resolved-2);
+
+    document.getElementById("activeCount")
+        .innerText=38+(active-4);
+
+    document.getElementById("heroReported")
+        .innerText=127+(reported-6);
+
+    document.getElementById("heroResolved")
+        .innerText=89+(resolved-2);
+
+}
+
+
+/* ================= TOAST ================= */
+
+let toastTimer;
+
+function showToast(message){
+
+    const toast=
+        document.getElementById("toast");
+
+    toast.innerText=message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer=setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* ================= NAVIGATION ================= */
+
+function scrollToId(id){
+
+    document.getElementById(id)
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* ================= CLOSE MODAL ON BACKDROP ================= */
+
+window.onclick=function(e){
+
+    if(e.target===
+document.getElementById("reportModal"))
+        closeReport();
+
+    if(e.target===
+document.getElementById("detailModal"))
+        closeDetail();
+
+}
+
+
+
+/* ================= PROFESSIONAL INTERACTIONS ================= */
+
+window.addEventListener("scroll",()=>{
+    const nav=document.querySelector("nav");
+    if(window.scrollY>30) nav.classList.add("scrolled");
+    else nav.classList.remove("scrolled");
+});
+
+const revealObserver=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+        }
+    });
+},{threshold:.14});
+
+document.querySelectorAll(".reveal-section").forEach(section=>{
+    revealObserver.observe(section);
+});
+
+function animateNumber(element,target,duration=900){
+    const start=Number(element.innerText.replace(/,/g,"")) || 0;
+    const startTime=performance.now();
+    function tick(now){
+        const progress=Math.min((now-startTime)/duration,1);
+        const eased=1-Math.pow(1-progress,3);
+        element.innerText=Math.round(start+(target-start)*eased).toLocaleString();
+        if(progress<1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+
+/* Keep the result count useful after search/filtering. */
+const originalRenderIssues=renderIssues;
+renderIssues=function(){
+    originalRenderIssues();
+    const count=document.querySelectorAll("#issueGrid .issue-card").length;
+    const result=document.getElementById("resultsCount");
+    if(result){
+        result.innerText=count===1 ? "1 community report found" : `${count} community reports found`;
+    }
+};
+
+/* Give report submission a little more public-service feedback. */
+const originalShowToast=showToast;
+showToast=function(message){
+    originalShowToast(message);
+};
+
+
+/* ================= INITIALIZE ================= */
+
+renderIssues();
+
+
+/* ================= FINAL UI POLISH ================= */
+document.addEventListener("DOMContentLoaded",()=>{
+  // Keyboard-friendly modal close.
+  document.addEventListener("keydown",(e)=>{
+    if(e.key==="Escape"){
+      if(typeof closeReport==="function") closeReport();
+      if(typeof closeDetail==="function") closeDetail();
+    }
+  });
+
+  // Stagger visible issue cards without adding heavy motion.
+  const issueGrid=document.getElementById("issueGrid");
+  if(issueGrid){
+    const observer=new MutationObserver(()=>{
+      issueGrid.querySelectorAll(".issue-card").forEach((card,i)=>{
+        card.style.animationDelay=Math.min(i*45,360)+"ms";
+      });
+    });
+    observer.observe(issueGrid,{childList:true});
+  }
+});
+
+</script>
+
+</body>
+</html>
